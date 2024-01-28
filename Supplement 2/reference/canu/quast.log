@@ -1,0 +1,217 @@
+/data/users/jyun/quast-5.2.0/quast.py /data/users/jyun/assembly_course/polishing/canu/pilon.fasta -o /data/users/jyun/assembly_course/assessment/quast/reference/canu --labels canu -t 20 -R /data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz -g /data/courses/assembly-annotation-course/references/TAIR10_GFF3_genes.gff --no-sv --large --eukaryote --pacbio /data/users/jyun/assembly_course/assessment/quast/merged_pacbio.fastq
+
+Version: 5.2.0, 3d87c606
+
+System information:
+  OS: Linux-3.10.0-1160.95.1.el7.x86_64-x86_64-with-centos-7.9.2009-Core (linux_64)
+  Python version: 2.7.5
+  CPUs number: 28
+
+Started: 2023-10-08 01:21:57
+
+Logging to /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast.log
+
+CWD: /data/users/jyun/assembly_course/assessment/quast/reference
+Main parameters: 
+  MODE: large, threads: 20, eukaryotic: true, min contig length: 3000, min alignment length: 500, \
+  min alignment IDY: 95.0, ambiguity: one, min local misassembly length: 200, min extensive misassembly length: 7000
+
+Reference:
+  /data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.gz ==> Arabidopsis_thaliana.TAIR10.dna.toplevel
+
+Contigs:
+  Pre-processing...
+  /data/users/jyun/assembly_course/polishing/canu/pilon.fasta ==> canu
+
+2023-10-08 01:22:12
+Running Reads analyzer...
+  Logging to files /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.log and /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err...
+  Will not search Structural Variations (--fast or --no-sv is specified)
+  Pre-processing reads...
+  Running BWA for reference...
+/data/users/jyun/quast-5.2.0/quast_libs/bwa/bwa index -p /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
+/data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
+>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err \
+2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+  Pre-processing reads...
+  Running BWA...
+/data/users/jyun/quast-5.2.0/quast_libs/bwa/bwa index -p /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/canu.fasta \
+/data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/canu.fasta \
+>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err \
+2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/minimap2/minimap2 -t 10 -ax map-pb /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
+/data/users/jyun/assembly_course/assessment/quast/merged_pacbio.fastq > Arabidopsis_thaliana.TAIR10.dna.toplevel.pacbio1.sam \
+2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/minimap2/minimap2 -t 10 -ax map-pb /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast_corrected_input/canu.fasta \
+/data/users/jyun/assembly_course/assessment/quast/merged_pacbio.fastq > canu.pacbio1.sam \
+2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam canu.pacbio1.sam > canu.pacbio1.bam 2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam Arabidopsis_thaliana.TAIR10.dna.toplevel.pacbio1.sam > Arabidopsis_thaliana.TAIR10.dna.toplevel.pacbio1.bam \
+2>> /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_stats.err
+  Done.
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -H -S canu/reads_stats/temp_output/canu.sam \
+> canu/reads_stats/canu.sam.header 2>> canu/reads_stats/reads_stats.err
+  Sorting SAM-file...
+  Done.
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -H -S canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.sam \
+> canu/reads_stats/Arabidopsis_thaliana.TAIR10.dna.toplevel.sam.header 2>> canu/reads_stats/reads_stats.err
+  Sorting SAM-file for reference...
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam canu/reads_stats/temp_output/canu.all.correct.sam > canu/reads_stats/temp_output/canu.bam \
+2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.all.correct.sam \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bam 2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux flagstat -t 10 canu/reads_stats/temp_output/canu.bam \
+> canu/reads_stats/canu.stat 2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools bamtobed -i canu/reads_stats/temp_output/canu.bam \
+> canu/reads_stats/temp_output/canu.bed 2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux flagstat -t 10 canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bam \
+> canu/reads_stats/Arabidopsis_thaliana.TAIR10.dna.toplevel.stat 2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools bamtobed -i canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bam \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bed 2>> canu/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n canu/reads_stats/temp_output/canu.bed > canu/reads_stats/temp_output/canu.sorted.bed \
+2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools genomecov -i canu/reads_stats/temp_output/canu.sorted.bed \
+-g canu/quast_corrected_input/canu.fasta.fai > canu/reads_stats/temp_output/canu.genomecov \
+2>> canu/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bed \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.sorted.bed \
+2>> canu/reads_stats/reads_stats.err
+  Analysis is finished.
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools genomecov -i canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.sorted.bed \
+-g canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai > canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.genomecov \
+2>> canu/reads_stats/reads_stats.err
+  Analysis for reference is finished.
+  Creating total report...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/reads_report.txt, reads_report.tsv, and reads_report.tex
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 20 -h -f bam \
+-F not unmapped canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bam \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.mapped.bam \
+2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux sort -t 20 --tmpdir \
+canu/reads_stats/temp_output -m 62GB -o canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.mapped.sorted.bam \
+canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.mapped.bam 2>> \
+canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 20 -h canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.mapped.sorted.bam \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.all.correct.sorted.sam \
+2>> canu/reads_stats/reads_stats.err
+  Calculating reads coverage...
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools genomecov -ibam canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.mapped.sorted.bam \
+-g canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai -bga \
+> canu/reads_stats/Arabidopsis_thaliana.TAIR10.dna.toplevel.cov_raw 2>> canu/reads_stats/reads_stats.err
+  Calculating physical coverage...
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 20 -h -f bam \
+-F proper_pair and not supplementary and not duplicate and template_length > -1000 and template_length < 1000 \
+canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.bam > canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.bam \
+2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux sort -t 20 --tmpdir \
+canu/reads_stats/temp_output -m 62GB -o canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.sorted.bam \
+canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.bam \
+-n 2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools bamtobed -i canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.sorted.bam \
+-bedpe > canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.bedpe \
+2>> canu/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.bed \
+> canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.sorted.bed \
+2>> canu/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools genomecov -i canu/reads_stats/temp_output/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.sorted.bed \
+-g canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa.fai -bga \
+> canu/reads_stats/Arabidopsis_thaliana.TAIR10.dna.toplevel.physical.raw.cov 2>> canu/reads_stats/reads_stats.err
+  Coverage distribution along the reference genome is in /data/users/jyun/assembly_course/assessment/quast/reference/canu/reads_stats/Arabidopsis_thaliana.TAIR10.dna.toplevel.cov
+Done.
+
+2023-10-08 02:15:17
+Running Basic statistics processor...
+  Reference genome:
+    Arabidopsis_thaliana.TAIR10.dna.toplevel.fa, length = 119667750, num fragments = 7, GC % = 36.06
+  Contig files: 
+    canu
+  Calculating N50 and L50...
+    canu, N50 = 10092069, L50 = 5, auN = 8244705.2, Total length = 122006507, GC % = 36.20, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/basic_stats/Nx_plot.pdf
+  Drawing NGx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/basic_stats/NGx_plot.pdf
+  Drawing cumulative plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/basic_stats/GC_content_plot.pdf
+  Drawing canu GC content plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/basic_stats/canu_GC_content_plot.pdf
+Done.
+
+2023-10-08 02:15:34
+Running Contig analyzer...
+  canu
+  Logging to files /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/contigs_report_canu.stdout and contigs_report_canu.stderr...
+  Aligning contigs to the reference
+  /data/users/jyun/quast-5.2.0/quast_libs/minimap2/minimap2 -c -x asm10 --mask-level \
+  0.9 --min-occ 200 -g 2500 --score-N 2 --cs -t 20 canu/quast_corrected_input/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa \
+  canu/quast_corrected_input/canu.fasta > canu/contigs_reports/minimap_output/canu.coords_tmp \
+  2>> canu/contigs_reports/contigs_report_canu.stderr
+  Analysis is finished.
+
+  Creating total report...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/misassemblies_report.txt, misassemblies_report.tsv, and misassemblies_report.tex
+  Transposed version of total report...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/transposed_report_misassemblies.txt, transposed_report_misassemblies.tsv, and transposed_report_misassemblies.tex
+  Creating total report...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/unaligned_report.txt, unaligned_report.tsv, and unaligned_report.tex
+  Drawing misassemblies by types plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/misassemblies_plot.pdf
+  Drawing misassemblies FRCurve plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/contigs_reports/misassemblies_frcurve_plot.pdf
+Done.
+
+2023-10-08 02:16:41
+Running NA-NGA calculation...
+  canu, Largest alignment = 6946206, NA50 = 567344, NGA50 = 641675, LA50 = 34, LGA50 = 32
+  Drawing cumulative plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/aligned_stats/cumulative_plot.pdf
+  Drawing NAx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/aligned_stats/NAx_plot.pdf
+  Drawing NGAx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/aligned_stats/NGAx_plot.pdf
+Done.
+
+2023-10-08 02:16:46
+Running Genome analyzer...
+  NOTICE: No file with operons were provided. Use the -O option if you want to specify it.
+  Loaded 590264 genomic features of type "ANY"
+  WARNING: Reference names in file with genomic features of type "ANY" do not match any chromosome. Check your genomic feature file(s).
+  canu
+  Analysis is finished.
+  Drawing genomic features cumulative plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/genome_stats/features_cumulative_plot.pdf
+  Drawing genomic features FRCurve plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/genome_stats/features_frcurve_plot.pdf
+  Skipping drawing # complete genomic features histogram... (less than 2 columns histogram makes no sense)
+  Skipping drawing Genome fraction, % histogram... (less than 2 columns histogram makes no sense)
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2023-10-08 02:24:11
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating PDF with all tables and plots...
+  2 of 2: Creating Icarus viewers...
+Done
+
+2023-10-08 02:24:44
+RESULTS:
+  Text versions of total report are saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/report.html
+  PDF version (tables and plots) is saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/report.pdf
+  Icarus (contig browser) is saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/icarus.html
+  Log is saved to /data/users/jyun/assembly_course/assessment/quast/reference/canu/quast.log
+
+Finished: 2023-10-08 02:24:44
+Elapsed time: 1:02:47.074168
+NOTICEs: 2; WARNINGs: 1; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

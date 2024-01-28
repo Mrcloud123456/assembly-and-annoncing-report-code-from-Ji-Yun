@@ -1,0 +1,34 @@
+Assembly	flye
+# contigs (>= 0 bp)	237
+# contigs (>= 1000 bp)	226
+# contigs (>= 5000 bp)	187
+# contigs (>= 10000 bp)	167
+# contigs (>= 25000 bp)	124
+# contigs (>= 50000 bp)	105
+Total length (>= 0 bp)	115786471
+Total length (>= 1000 bp)	115778864
+Total length (>= 5000 bp)	115665068
+Total length (>= 10000 bp)	115518973
+Total length (>= 25000 bp)	114794082
+Total length (>= 50000 bp)	114102592
+# contigs	206
+Largest contig	13644371
+Total length	115742546
+Estimated reference length	130000000
+GC (%)	36.06
+N50	10060011
+NG50	7870434
+N90	394722
+auN	7925817.5
+auNG	7056571.5
+L50	5
+LG50	6
+L90	32
+# total reads	1128688
+# left	0
+# right	0
+Mapped (%)	126.81
+Properly paired (%)	0.0
+Avg. coverage depth	59
+Coverage >= 1x (%)	99.99
+# N's per 100 kbp	0.86

@@ -1,0 +1,68 @@
+Assembly	canu
+# contigs (>= 0 bp)	220
+# contigs (>= 1000 bp)	220
+# contigs (>= 5000 bp)	217
+# contigs (>= 10000 bp)	208
+# contigs (>= 25000 bp)	112
+# contigs (>= 50000 bp)	65
+Total length (>= 0 bp)	122008493
+Total length (>= 1000 bp)	122008493
+Total length (>= 5000 bp)	121997856
+Total length (>= 10000 bp)	121924816
+Total length (>= 25000 bp)	120297064
+Total length (>= 50000 bp)	118689182
+# contigs	219
+Largest contig	14950415
+Total length	122006507
+Reference length	119667750
+GC (%)	36.20
+Reference GC (%)	36.06
+N50	10092069
+NG50	10092069
+N90	543641
+NG90	798456
+auN	8244705.2
+auNG	8405837.7
+L50	5
+LG50	5
+L90	25
+LG90	22
+# total reads	1128688
+# left	0
+# right	0
+Mapped (%)	135.05
+Reference mapped (%)	144.91
+Properly paired (%)	0.0
+Reference properly paired (%)	0.0
+Avg. coverage depth	73
+Reference avg. coverage depth	67
+Coverage >= 1x (%)	99.88
+Reference coverage >= 1x (%)	98.54
+# misassemblies	625
+# misassembled contigs	104
+Misassembled contigs length	117393025
+# local misassemblies	3293
+# scaffold gap ext. mis.	0
+# scaffold gap loc. mis.	0
+# possible TEs	56
+# unaligned mis. contigs	41
+# unaligned contigs	16 + 153 part
+Unaligned length	12498375
+Genome fraction (%)	89.244
+Duplication ratio	1.027
+# N's per 100 kbp	0.00
+# mismatches per 100 kbp	731.97
+# indels per 100 kbp	156.88
+# genomic features	0 + 0 part
+Largest alignment	6946206
+Total aligned length	109458890
+NA50	567344
+NGA50	641675
+NA90	-
+NGA90	8340
+auNA	1579465.1
+auNGA	1610333.8
+LA50	34
+LGA50	32
+LA90	-
+LGA90	557

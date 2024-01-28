@@ -1,0 +1,99 @@
+/data/users/jyun/quast-5.2.0/quast.py /data/users/jyun/assembly_course/polishing/flye/pilon.fasta -o /data/users/jyun/assembly_course/assessment/quast/blank/flye --labels flye -t 20 --est-ref-size 130000000 --no-sv --large --eukaryote --pacbio /data/users/jyun/assembly_course/assessment/quast/merged_pacbio.fastq
+
+Version: 5.2.0, 3d87c606
+
+System information:
+  OS: Linux-3.10.0-1160.95.1.el7.x86_64-x86_64-with-centos-7.9.2009-Core (linux_64)
+  Python version: 2.7.5
+  CPUs number: 40
+
+Started: 2023-10-08 22:00:42
+
+Logging to /data/users/jyun/assembly_course/assessment/quast/blank/flye/quast.log
+
+CWD: /data/users/jyun/assembly_course/assessment/quast/blank
+Main parameters: 
+  MODE: large, threads: 20, eukaryotic: true, min contig length: 3000, min alignment length: 500, \
+  min alignment IDY: 95.0, ambiguity: one, min local misassembly length: 200, min extensive misassembly length: 7000
+
+Contigs:
+  Pre-processing...
+  /data/users/jyun/assembly_course/polishing/flye/pilon.fasta ==> flye
+
+2023-10-08 22:00:51
+Running Reads analyzer...
+  Logging to files /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.log and /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.err...
+  Pre-processing reads...
+  Running BWA...
+/data/users/jyun/quast-5.2.0/quast_libs/bwa/bwa index -p /data/users/jyun/assembly_course/assessment/quast/blank/flye/quast_corrected_input/flye.fasta \
+/data/users/jyun/assembly_course/assessment/quast/blank/flye/quast_corrected_input/flye.fasta \
+>> /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.err \
+2>> /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/minimap2/minimap2 -t 10 -ax map-pb /data/users/jyun/assembly_course/assessment/quast/blank/flye/quast_corrected_input/flye.fasta \
+/data/users/jyun/assembly_course/assessment/quast/merged_pacbio.fastq > flye.pacbio1.sam \
+2>> /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam flye.pacbio1.sam > flye.pacbio1.bam 2>> /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_stats.err
+  Done.
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -H -S flye/reads_stats/temp_output/flye.sam \
+> flye/reads_stats/flye.sam.header 2>> flye/reads_stats/reads_stats.err
+  Sorting SAM-file...
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux view -t 10 -h -S -f \
+bam flye/reads_stats/temp_output/flye.all.correct.sam > flye/reads_stats/temp_output/flye.bam \
+2>> flye/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/sambamba/sambamba_linux flagstat -t 10 flye/reads_stats/temp_output/flye.bam \
+> flye/reads_stats/flye.stat 2>> flye/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools bamtobed -i flye/reads_stats/temp_output/flye.bam \
+> flye/reads_stats/temp_output/flye.bed 2>> flye/reads_stats/reads_stats.err
+sort -k1,1 -k2,2n flye/reads_stats/temp_output/flye.bed > flye/reads_stats/temp_output/flye.sorted.bed \
+2>> flye/reads_stats/reads_stats.err
+/data/users/jyun/quast-5.2.0/quast_libs/bedtools/bin/bedtools genomecov -i flye/reads_stats/temp_output/flye.sorted.bed \
+-g flye/quast_corrected_input/flye.fasta.fai > flye/reads_stats/temp_output/flye.genomecov \
+2>> flye/reads_stats/reads_stats.err
+  Analysis is finished.
+  Creating total report...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/reads_stats/reads_report.txt, reads_report.tsv, and reads_report.tex
+Done.
+
+2023-10-08 22:28:59
+Running Basic statistics processor...
+  Estimated reference length = 130000000
+  Contig files: 
+    flye
+  Calculating N50 and L50...
+    flye, N50 = 10060011, L50 = 5, auN = 7925817.5, Total length = 115742546, GC % = 36.06, # N's per 100 kbp =  0.86
+  Drawing Nx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/basic_stats/Nx_plot.pdf
+  Drawing NGx plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/basic_stats/NGx_plot.pdf
+  Drawing cumulative plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/basic_stats/GC_content_plot.pdf
+  Drawing flye GC content plot...
+    saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/basic_stats/flye_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2023-10-08 22:29:06
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating PDF with all tables and plots...
+  2 of 2: Creating Icarus viewers...
+Done
+
+2023-10-08 22:29:09
+RESULTS:
+  Text versions of total report are saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/report.html
+  PDF version (tables and plots) is saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/report.pdf
+  Icarus (contig browser) is saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/icarus.html
+  Log is saved to /data/users/jyun/assembly_course/assessment/quast/blank/flye/quast.log
+
+Finished: 2023-10-08 22:29:09
+Elapsed time: 0:28:26.890110
+NOTICEs: 1; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

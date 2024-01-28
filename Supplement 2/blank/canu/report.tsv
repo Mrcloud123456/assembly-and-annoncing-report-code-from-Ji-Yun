@@ -1,0 +1,36 @@
+Assembly	canu
+# contigs (>= 0 bp)	220
+# contigs (>= 1000 bp)	220
+# contigs (>= 5000 bp)	217
+# contigs (>= 10000 bp)	208
+# contigs (>= 25000 bp)	112
+# contigs (>= 50000 bp)	65
+Total length (>= 0 bp)	122008493
+Total length (>= 1000 bp)	122008493
+Total length (>= 5000 bp)	121997856
+Total length (>= 10000 bp)	121924816
+Total length (>= 25000 bp)	120297064
+Total length (>= 50000 bp)	118689182
+# contigs	219
+Largest contig	14950415
+Total length	122006507
+Estimated reference length	130000000
+GC (%)	36.20
+N50	10092069
+NG50	9468600
+N90	543641
+NG90	187963
+auN	8244705.2
+auNG	7737751.4
+L50	5
+LG50	6
+L90	25
+LG90	45
+# total reads	1128688
+# left	0
+# right	0
+Mapped (%)	135.05
+Properly paired (%)	0.0
+Avg. coverage depth	73
+Coverage >= 1x (%)	99.88
+# N's per 100 kbp	0.00
